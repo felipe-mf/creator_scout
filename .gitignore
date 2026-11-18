@@ -1,0 +1,141 @@
+# ---------------------------------------------------------------
+# creator-scout — .gitignore
+# Monorepo: Python (agent, mcp_server, data, evals) + Node (frontend, bff, e2e)
+# ---------------------------------------------------------------
+
+# === Segredos e configuração local ===
+.env
+.env.*
+!.env.example
+*.local
+secrets/
+*.pem
+*.key
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Ambientes virtuais (uv cria .venv por padrão)
+.venv/
+venv/
+env/
+ENV/
+
+# uv: o uv.lock DEVE ser versionado — é o que garante build reprodutível.
+# Nada a ignorar aqui, só não apague o lock.
+
+# Caches de ferramentas Python
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.tox/
+.nox/
+.hypothesis/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# === Node / TypeScript ===
+node_modules/
+.npm/
+.yarn/
+.pnp.*
+*.tsbuildinfo
+.eslintcache
+
+# Builds
+frontend/dist/
+frontend/dist-ssr/
+bff/dist/
+.vite/
+.output/
+.nuxt/
+
+# Logs de gerenciador de pacotes
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Lockfiles: versione o do gerenciador que você usa de fato.
+# Se usar npm, mantenha package-lock.json versionado e ignore os outros:
+yarn.lock
+pnpm-lock.yaml
+
+# === Cypress (E2E) ===
+e2e/cypress/videos/
+e2e/cypress/screenshots/
+e2e/cypress/downloads/
+cypress/videos/
+cypress/screenshots/
+cypress/downloads/
+
+# === Dados gerados ===
+# Regeneráveis com `generate.py --seed 42`, e grandes demais para o Git.
+data/*.parquet
+data/*.csv
+data/*.duckdb
+data/output/
+*.sqlite3
+*.db
+
+# Embeddings e modelos baixados (sentence-transformers / HuggingFace)
+models/
+.cache/huggingface/
+*.safetensors
+*.bin
+!**/requirements*.bin
+
+# === LangChain / LangGraph / LangSmith ===
+# Os traces ficam na nuvem do LangSmith; o que cai local é cache e estado.
+.langgraph_api/
+.langgraph/
+.langchain/
+langsmith_results/
+evals/results/
+evals/.cache/
+
+# === Docker e infraestrutura ===
+# Volumes montados localmente (os volumes nomeados do Compose ficam fora do repo)
+infra/pgdata/
+infra/redis-data/
+docker-compose.override.yml
+
+# === Observabilidade (artefatos locais) ===
+otel-data/
+jaeger-data/
+grafana-data/
+prometheus-data/
+
+# === Logs e temporários ===
+*.log
+logs/
+tmp/
+temp/
+*.pid
+*.seed
+
+# === Editores e SO ===
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.example.json
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db

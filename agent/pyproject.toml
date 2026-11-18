@@ -1,0 +1,34 @@
+[project]
+name = "scout-agent"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "Felipe Fagundes", email = "felipemarostega.ff@gmail.com" }
+]
+requires-python = ">=3.14"
+dependencies = [
+    "fastapi>=0.163.1",
+    "langchain>=1.5.0",
+    "langchain-anthropic>=1.7.10",
+    "langchain-mcp-adapters>=0.3.2",
+    "langgraph>=1.2.22",
+    "langsmith>=0.14.17",
+    "pydantic-settings>=2.16.3",
+    "uvicorn>=0.54.0",
+]
+
+[project.scripts]
+scout-agent = "scout_agent:main"
+
+[build-system]
+requires = ["uv_build>=0.13.6,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "mypy>=2.4.1",
+    "pytest>=9.2.0",
+    "pytest-asyncio>=1.5.0",
+    "ruff>=0.17.5",
+]
